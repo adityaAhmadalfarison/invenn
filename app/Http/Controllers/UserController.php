@@ -6,6 +6,8 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -40,7 +42,7 @@ class UserController extends Controller
         ]);
         $user->assignRole($role);
 
-        return to_route('pengguna.index')->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->route('pengguna.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -71,6 +73,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return to_route('pengguna.index')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('pengguna.index')->with('success', 'Data berhasil dihapus!');
     }
 }
+
